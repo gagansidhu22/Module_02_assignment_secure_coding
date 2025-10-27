@@ -1,24 +1,18 @@
-name: "Super-Linter"
+name: Super-Linter
 
 on:
   push:
-    branches: [ main, master ]
   pull_request:
-    branches: [ main, master ]
 
 jobs:
-  super-linter:
-    name: super-linter
+  lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Run super-linter
-        uses: github/super-linter@v5
+      - name: Run Super-Linter
+        uses: super-linter/super-linter/slim@v5
         env:
-          VALIDATE_ALL_CODEBASE: "true"
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ACTIONS_RUNNER_DEBUG: "false"
-
